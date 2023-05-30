@@ -14,10 +14,14 @@ For example, for Ubuntu system (adapt to our own machine)
 ```
 sudo apt install cmake libarmadillo-dev libfftw3-dev
 ```
+Or, load the following modules on Digital Research Alliance of Canada' systems (formerly ComputeCanada):
+```
+module load StdEnv/2020 gcc/9.3.0 fftw/3.3.8 cmake/3.23.1 armadillo/9.900.2
+```
 
 2. Clone this repository:
 ```
-git https://github.com/MoiseRousseau/OmegaMaxEnt && cd OmegaMaxEnt
+git clone https://github.com/MoiseRousseau/OmegaMaxEnt && cd OmegaMaxEnt
 ```
 
 3. Build `OmegaMaxEnt`:
