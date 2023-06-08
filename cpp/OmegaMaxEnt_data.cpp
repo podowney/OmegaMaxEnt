@@ -74,12 +74,12 @@ OmegaMaxEnt_data::OmegaMaxEnt_data(int arg_N, char *args[])
 					graph_2D::display_figures=false;
 				}
                 else
-                    cout<<"invalid option: "<<args[j]<<'\n';
+                    cout<<"invalid option: "<<args[j]<<' (OD0028)\n';
             }
             else if (args[j][0])
             {
                 input_params_file_name.assign(args[j]);
-                cout<<"input parameters file name: "<<input_params_file_name<<'\n';
+                cout<<"input parameters file name: "<<input_params_file_name<<' (OD0027)\n';
             }
         }
     }
@@ -470,7 +470,7 @@ int OmegaMaxEnt_data::loop_run()
 					
 					if (A_ref_file.size() && (A_ref_change || initialize_maxent))
 					{
-						if (!set_A_ref()) cout<<"warning: reference spectrum could not be defined\n";
+						if (!set_A_ref()) cout<<"warning: reference spectrum could not be defined (OD0029)\n";
 					}
 				}
 				
@@ -560,18 +560,18 @@ int OmegaMaxEnt_data::loop_run()
 					{
 						if (stat(output_dir_in.c_str(),&file_stat))
 						{
-							cout<<"creating output directory: "<<output_dir_in<<endl;
+							cout<<"creating output directory: "<<output_dir_in<<" (OD0030)"<<endl;
 							mkdir(output_dir_in.c_str(), S_IRWXU | S_IRWXG | S_IRWXO);
 						}
 					}
 					if (stat(output_dir.c_str(),&file_stat))
 					{
-						cout<<"creating output directory: "<<output_dir<<endl;
+						cout<<"creating output directory: "<<output_dir<<" (OD0031)"<<endl;
 						mkdir(output_dir.c_str(), S_IRWXU | S_IRWXG | S_IRWXO);
 					}
 					if (stat(output_dir_fin.c_str(),&file_stat))
 					{
-						cout<<"creating output directory: "<<output_dir_fin<<endl;
+						cout<<"creating output directory: "<<output_dir_fin<<" (OD0032)"<<endl;
 						mkdir(output_dir_fin.c_str(), S_IRWXU | S_IRWXG | S_IRWXO);
 					}
 					
@@ -606,7 +606,7 @@ int OmegaMaxEnt_data::loop_run()
 					curv_lchi2_lalpha_1.zeros(Nalpha_max);
 					dlchi2_lalpha_1.zeros(Nalpha_max);
 					
-					cout<<"\nStarting minimization at initial value of alpha\n";
+					cout<<"\nStarting minimization at initial value of alpha (OD0033)\n";
 					
 					/*
 					{
@@ -660,7 +660,7 @@ int OmegaMaxEnt_data::loop_run()
 						Acl=data.col(1);
 					}
 					else
-						cout<<"spectral function was not saved at alpha= "<<alpha_vec(ind_P_alpha_G_max)<<endl;
+						cout<<"spectral function was not saved at alpha= "<<alpha_vec(ind_P_alpha_G_max)<<" (OD0034)"<<endl;
 					
 					compute_Bryan_spectrum(Abr);
 				}
@@ -888,7 +888,7 @@ int OmegaMaxEnt_data::loop_run()
 						}
 						else if (NM>0)
 						{
-							cout<<"normalized deviation for moment of order "<<M_ord(0)<<": "<<errM_out(0)<<endl;
+							cout<<"normalized deviation for moment of order "<<M_ord(0)<<": "<<errM_out(0)<<" (OD0035)"<<endl;
 						}
 					}
 					
@@ -1183,12 +1183,12 @@ int OmegaMaxEnt_data::loop_run()
 						if (!alpha_save_max_in.size()) alpha_save_max=f_alpha_save*alpha_vec(ind_alpha_opt);
 						if (!alpha_save_min_in.size()) alpha_save_min=alpha_vec(ind_alpha_opt)/f_alpha_save;
 						
-						cout<<"optimal value of alpha: "<<alpha_vec(ind_alpha_opt)<<endl;
-						cout<<"chi2 at optimal alpha: "<<chi2_vec(ind_alpha_opt)<<endl;
+						cout<<"optimal value of alpha: "<<alpha_vec(ind_alpha_opt)<<" (OD0036)"<<endl;
+						cout<<"chi2 at optimal alpha: "<<chi2_vec(ind_alpha_opt)<<" (OD0037)"<<endl;
 						if (compute_P_alpha_G)
 						{
-							cout<<"optimal value of alpha for classic MaxEnt (alpha_cl): "<<alpha_vec(ind_P_alpha_G_max)<<endl;
-							cout<<"chi2 at alpha_cl: "<<chi2_vec(ind_P_alpha_G_max)<<endl;
+							cout<<"optimal value of alpha for classic MaxEnt (alpha_cl): "<<alpha_vec(ind_P_alpha_G_max)<<" (OD0038)"<<endl;
+							cout<<"chi2 at alpha_cl: "<<chi2_vec(ind_P_alpha_G_max)<<" (OD0039)"<<endl;
 						}
 						
 						mat data;
@@ -1201,19 +1201,19 @@ int OmegaMaxEnt_data::loop_run()
 						if (data.load(file_name))
 							A_opt=data.col(1);
 						else
-							cout<<"spectral function was not saved at alpha= "<<alpha_vec(ind_alpha_opt)<<endl;
+							cout<<"spectral function was not saved at alpha= "<<alpha_vec(ind_alpha_opt)<<" (OD0040)"<<endl;
 						
 						sprintf(file_name, output_name_format.c_str(),tem,alpha_vec(ind_alpha_opt_r));
 						if (data.load(file_name))
 							A_opt_r=data.col(1);
 						else
-							cout<<"spectral function was not saved at alpha= "<<alpha_vec(ind_alpha_opt_r)<<endl;
+							cout<<"spectral function was not saved at alpha= "<<alpha_vec(ind_alpha_opt_r)<<" (OD0041)"<<endl;
 						
 						sprintf(file_name, output_name_format.c_str(),tem,alpha_vec(ind_alpha_opt_l));
 						if (data.load(file_name))
 							A_opt_l=data.col(1);
 						else
-							cout<<"spectral function was not saved at alpha= "<<alpha_vec(ind_alpha_opt_l)<<endl;
+							cout<<"spectral function was not saved at alpha= "<<alpha_vec(ind_alpha_opt_l)<<" (OD0042)"<<endl;
 						
 						if (A_opt.n_rows && A_opt_l.n_rows && A_opt_r.n_rows)
 						{
@@ -1682,27 +1682,27 @@ int OmegaMaxEnt_data::loop_run()
 					}
 					else if (alpha<=alpha_min && !alpha_min_in.size())
 					{
-						cout<<"minimum value of alpha reached but optimal spectrum has not been found. Reducing alpha_min by a factor "<<f_alpha_min<<".\n";
+						cout<<"minimum value of alpha reached but optimal spectrum has not been found. Reducing alpha_min by a factor "<<f_alpha_min<<". (OD0043)\n";
 						alpha_min=alpha_min/f_alpha_min;
 						alpha_min_too_high=true;
-						cout<<"new value of alpha_min: "<<alpha_min<<endl;
+						cout<<"new value of alpha_min: "<<alpha_min<<" (OD0044)"<<endl;
 					}
 					else
 					{
-						cout<<"optimal spectrum has not been found. The real frequency grid might not be adapted to the spectrum\n";
+						cout<<"optimal spectrum has not been found. The real frequency grid might not be adapted to the spectrum (OD0045)\n";
 					}
 					
 					if (alpha<=alpha_min && dlchi2_lalpha_min_av/dlchi2_lalpha_max>RMAX_dlchi2_lalpha && !alpha_min_in.size())
 					{
-						cout<<"The minimum value of alpha may not be small enough. Reducing alpha_min by a factor "<<f_alpha_min<<".\n";
+						cout<<"The minimum value of alpha may not be small enough. Reducing alpha_min by a factor "<<f_alpha_min<<". (OD0046)\n";
 						alpha_min=alpha_min/f_alpha_min;
 						alpha_min_too_high=true;
-						cout<<"new value of alpha_min: "<<alpha_min<<endl;
+						cout<<"new value of alpha_min: "<<alpha_min<<" (OD0047)"<<endl;
 					}
 					
 					if (show_lowest_alpha_figs || show_optimal_alpha_figs || show_alpha_curves)
 					{
-						if (graph_2D::display_figures) cout<<"close the figures to resume or stop execution\n";
+						if (graph_2D::display_figures) cout<<"close the figures to resume or stop execution (OD0048)\n";
 						graph_2D::show_figures();
 					}
 					
@@ -1715,7 +1715,7 @@ int OmegaMaxEnt_data::loop_run()
 			if (interactive_mode)
 			{
 				cin.clear();
-				if (!execute_maxent) cout<<"Note that \"preprocess only\", in section PREPROCESSING EXECUTION OPTIONS, is set to 'yes'. Disable that option if you want to continue with the actual calculation.\n";
+				if (!execute_maxent) cout<<"Note that \"preprocess only\", in section PREPROCESSING EXECUTION OPTIONS, is set to 'yes'. Disable that option if you want to continue with the actual calculation. (OD0049)\n";
 				
 			//	if (N_params_noise && !error_provided && ind_noise<(N_params_noise-1))
 			//		cout<<"continue with current relative error ([y]/n)?:\n";
@@ -1920,7 +1920,7 @@ bool OmegaMaxEnt_data::preproc()
 				{
 					if (!compute_moments_omega_n())
 					{
-						cout<<"Computation of moments failed. You need to either provide moments or grid parameters to allow the calculation to proceed.\n";
+						cout<<"Computation of moments failed. You need to either provide moments or grid parameters to allow the calculation to proceed. (OD0050)\n";
 						return false;
 					}
 				}
@@ -1928,7 +1928,7 @@ bool OmegaMaxEnt_data::preproc()
 				{
 					if (!compute_moments_omega_n_2())
 					{
-						cout<<"Computation of moments failed. You need to either provide moments or grid parameters to allow the calculation to proceed.\n";
+						cout<<"Computation of moments failed. You need to either provide moments or grid parameters to allow the calculation to proceed. (OD0051)\n";
 						return false;
 					}
 				}
@@ -2353,7 +2353,7 @@ bool OmegaMaxEnt_data::preproc()
 				{
 					if (!compute_moments_omega_n())
 					{
-						cout<<"Computation of moments failed. You need to either provide moments or grid parameters to allow the calculation to proceed.\n";
+						cout<<"Computation of moments failed. You need to either provide moments or grid parameters to allow the calculation to proceed. (OD0052)\n";
 						return false;
 					}
 				}
@@ -2361,7 +2361,7 @@ bool OmegaMaxEnt_data::preproc()
 				{
 					if (!compute_moments_omega_n_2())
 					{
-						cout<<"Computation of moments failed. You need to either provide moments or grid parameters to allow the calculation to proceed.\n";
+						cout<<"Computation of moments failed. You need to either provide moments or grid parameters to allow the calculation to proceed. (OD0053)\n";
 						return false;
 					}
 				}
@@ -2769,7 +2769,7 @@ bool OmegaMaxEnt_data::preproc()
 			{
 				if (!compute_moments_chi_omega_n())
 				{
-					cout<<"Computation of moments failed. You need to either provide moments or grid parameters to allow the calculation to proceed.\n";
+					cout<<"Computation of moments failed. You need to either provide moments or grid parameters to allow the calculation to proceed. (OD0054)\n";
 					return false;
 				}
 			}
@@ -21636,10 +21636,10 @@ bool OmegaMaxEnt_data::compute_moments_omega_n()
 	
 	cout<<"frequency range of asymptotic behavior: "<<wn(jfit-1)<<" to "<<wn(Nn-1)<<" (indices "<<jfit-1<<" to "<<Nn-1<<")"<<endl;
 	
-	cout<<"norm extracted from high frequencies of G: "<<Mfit(0)<<endl;
-	cout<<"1st moment extracted from high frequencies: "<<Mfit(1)<<endl;
-	cout<<"2nd moment extracted from high frequencies: "<<Mfit(2)<<endl;
-	cout<<"3rd moment extracted from high frequencies: "<<Mfit(3)<<endl;
+	cout<<"norm extracted from high frequencies of G: "<<Mfit(0)<<" (OD0001)"<<endl;
+	cout<<"1st moment extracted from high frequencies: "<<Mfit(1)<<" (OD0002)"<<endl;
+	cout<<"2nd moment extracted from high frequencies: "<<Mfit(2)<<" (OD0003)"<<endl;
+	cout<<"3rd moment extracted from high frequencies: "<<Mfit(3)<<" (OD0004)"<<endl;
 	
 	double std_omega_tmp;
 	double var_omega;
@@ -21650,10 +21650,10 @@ bool OmegaMaxEnt_data::compute_moments_omega_n()
 			if (abs(Mfit(0)-M0)/Mfit(0)>tol_norm)
 			{
 				if (M0_in.size())
-					cout<<"warning: norm of spectral function is different from provided one.\n";
+					cout<<"warning: norm of spectral function is different from provided one. (OD0005)\n";
 				else
 				{
-					cout<<"warning: spectral function is not normalized.\n";
+					cout<<"warning: spectral function is not normalized. (OD0006)\n";
 				}
 			}
 		}
@@ -21664,7 +21664,7 @@ bool OmegaMaxEnt_data::compute_moments_omega_n()
 			std_omega_tmp=sqrt(var_omega);
 		else
 		{
-			cout<<"Negative variance found during computation of moments.\n";
+			cout<<"Negative variance found during computation of moments. (OD0007)\n";
 			return false;
 		}
 		
@@ -21692,17 +21692,17 @@ bool OmegaMaxEnt_data::compute_moments_omega_n()
 		else
 		{
 			if (abs(M1-Mfit(1))/std_omega_tmp>tol_M1)
-				cout<<"warning: first moment different from provided one\n";
+				cout<<"warning: first moment different from provided one (OD0008)\n";
 			if (M2_in.size())
 			{
 				if (abs(M2-Mfit(2))/Mfit(2)>tol_M2)
-					cout<<"warning: second moment different from provided one\n";
+					cout<<"warning: second moment different from provided one (OD0009)\n";
 				
 				if (M3_in.size())
 				{
 					if (abs(M3-Mfit(3))/pow(std_omega_tmp,3)>tol_M3)
 					{
-						cout<<"warning: third moment different from provided one\n";
+						cout<<"warning: third moment different from provided one (OD0010)\n";
 					}
 				}
 				else
@@ -21796,7 +21796,7 @@ bool OmegaMaxEnt_data::compute_moments_omega_n()
 			if (M0)
 			{
 				if (abs((Mfit(0)-M0)/Mfit(0))>tol_norm)
-					cout<<"warning: norm of spectral function is different from provided one.\n";
+					cout<<"warning: norm of spectral function is different from provided one. (OD0011)\n";
 			}
 		}
 		
@@ -21805,7 +21805,7 @@ bool OmegaMaxEnt_data::compute_moments_omega_n()
 			std_omega_tmp=sqrt(var_omega);
 		else
 		{
-			cout<<"Negative variance found during computation of moments.\n";
+			cout<<"Negative variance found during computation of moments. (OD0012)\n";
 			return false;
 		}
 		
@@ -21849,13 +21849,13 @@ bool OmegaMaxEnt_data::compute_moments_omega_n()
 		else
 		{
 			if (abs((M1-Mfit(1))/Mfit(1))>tol_M1)
-				cout<<"warning: first moment different from provided one\n";
+				cout<<"warning: first moment different from provided one (OD0011)\n";
 			if (M2_in.size())
 			{
 				if (M2)
 				{
 					if (abs((M2-Mfit(2))/Mfit(2))>tol_M2)
-						cout<<"warning: second moment different from provided one\n";
+						cout<<"warning: second moment different from provided one (OD0012)\n";
 				}
 			}
 			else
@@ -21882,7 +21882,7 @@ bool OmegaMaxEnt_data::compute_moments_omega_n()
 				std_omega=sqrt(var_omega);
 			else
 			{
-				cout<<"Negative variance found during computation of moments.\n";
+				cout<<"Negative variance found during computation of moments. (OD0013)\n";
 				return false;
 			}
 		}
@@ -21942,7 +21942,7 @@ bool OmegaMaxEnt_data::compute_moments_omega_n()
 		plot(g3, x, M2v, xl, yl3);
 		plot(g4, x, M3v, xl, yl4);
 		
-		if (graph_2D::display_figures) cout<<"close the figures to resume execution\n";
+		if (graph_2D::display_figures) cout<<"close the figures to resume execution (OD0014)\n";
 		graph_2D::show_figures();
 	}
 	
@@ -21963,7 +21963,7 @@ bool OmegaMaxEnt_data::compute_moments_omega_n()
 		plot(g3, x, varM2, xl, yl3);
 		plot(g4, x, varM3, xl, yl4);
 		
-		if (graph_2D::display_figures) cout<<"close the figures to resume execution\n";
+		if (graph_2D::display_figures) cout<<"close the figures to resume execution (OD0015)\n";
 		graph_2D::show_figures();
 	}
 	
@@ -22024,7 +22024,7 @@ bool OmegaMaxEnt_data::set_moments_fermions()
 			M2_set=true;
 			if (M2<=0)
 			{
-				cout<<"Error: second moment of spectral function must be greater than 0.\n";
+				cout<<"Error: second moment of spectral function must be greater than 0. (OD0016)\n";
 				return false;
 			}
 //			NMinput=3;
@@ -22046,7 +22046,7 @@ bool OmegaMaxEnt_data::set_moments_fermions()
 			}
 			else
 			{
-				cout<<"Error: negative variance. First and/or second moment incorect.\n";
+				cout<<"Error: negative variance. First and/or second moment incorrect. (OD0017)\n";
 				return false;
 			}
 			errM2=default_error_M*M2;
@@ -22104,9 +22104,9 @@ bool OmegaMaxEnt_data::set_moments_fermions()
 	if ( NM<3 && !SW_in.size() && (!use_grid_params || omega_grid_params.n_cols<3) && !grid_omega_file.size() && !init_spectr_func_file.size() )
 	{
 		if (!tau_GF)
-			cout<<"not enough information provided to define the real frequency grid. The program will try to extract moments from the high frequencies of the Green function\n";
+			cout<<"not enough information provided to define the real frequency grid. The program will try to extract moments from the high frequencies of the Green function (OD0018)\n";
 		else
-			cout<<"not enough information provided to define the real frequency grid. The program will try to extract moments from G(tau) around tau=0 and tau=beta.\n";
+			cout<<"not enough information provided to define the real frequency grid. The program will try to extract moments from G(tau) around tau=0 and tau=beta. (OD0019)\n";
 		eval_moments=true;
 	}
 	
@@ -22118,7 +22118,7 @@ bool OmegaMaxEnt_data::set_moments_fermions()
 			M2_set=true;
 			if (M2<=0)
 			{
-				cout<<"Error: second moment of spectral function must be greater than 0.\n";
+				cout<<"Error: second moment of spectral function must be greater than 0. (OD0020)\n";
 				return false;
 			}
 			errM2=default_error_M*M2;
@@ -22147,10 +22147,10 @@ bool OmegaMaxEnt_data::set_covar_G_omega_n()
 	{
 		if (error_data.n_rows<Nn)
 		{
-			cout<<"number of lines is too small in file "<<error_file<<endl;
+			cout<<"number of lines is too small in file "<<error_file<<" (OD0021)"<<endl;
 			return false;
 		}
-		cout<<"error file provided\n";
+		cout<<"error file provided (OD0022)\n";
 		errGr=error_data.col(col_errGr-1);
 		errGi=error_data.col(col_errGi-1);
 		if (wn_sign_change)
@@ -22176,10 +22176,10 @@ bool OmegaMaxEnt_data::set_covar_G_omega_n()
 	{
 		if (CRR.n_rows<Nn || CRR.n_cols<Nn || CII.n_rows<Nn || CII.n_cols<Nn || CRI.n_rows<Nn || CRI.n_cols<Nn)
 		{
-			cout<<"number of lines and/or columns in covariance file(s) is too small\n";
+			cout<<"number of lines and/or columns in covariance file(s) is too small (OD0023)\n";
 			return false;
 		}
-		cout<<"covariance matrix provided\n";
+		cout<<"covariance matrix provided (OD0024)\n";
 		cov_diag=false;
 		uvec even_ind=linspace<uvec>(0,2*Nn-2,Nn);
 		uvec odd_ind=even_ind+1;
@@ -22193,7 +22193,7 @@ bool OmegaMaxEnt_data::set_covar_G_omega_n()
 	{
 		int k;
 		
-		cout<<"added noise relative error: "<<noise_params(ind_noise)<<endl;
+		cout<<"added noise relative error: "<<noise_params(ind_noise)<<" (OD0025)"<<endl;
 		
 		errGr=noise_params(ind_noise)*abs(Gr);
 		errGi=noise_params(ind_noise)*abs(Gi);
@@ -22392,7 +22392,7 @@ bool OmegaMaxEnt_data::set_covar_G_omega_n()
 	}
 	else
 	{
-		cout<<"no errors provided\nusing a constant error\n";
+		cout<<"no errors provided\nusing a constant error (OD0026)\n";
 		if (!boson)
 		{
 			double Gi_max=max(abs(Gi));
