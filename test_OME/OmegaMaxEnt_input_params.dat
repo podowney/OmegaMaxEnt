@@ -21,7 +21,7 @@ INPUT FILES PARAMETERS
 input directory:
 Re(G) column in data file (default: 2):
 Im(G) column in data file (default: 3):
-error file:
+error file:greenUp_Kmeanerr.dat
 Re(G) column in error file (default: 2):
 Im(G) column in error file (default: 3):
 re-re covariance file:
